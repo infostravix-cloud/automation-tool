@@ -45,7 +45,7 @@ st.markdown("""
         margin-bottom: 25px;
     }
     </style>
-""", unsafe_allow_html=True) # FIXED: unsafe_gradient hata kar unsafe_allow_html kiya
+""", unsafe_gradient=True)
 
 # UI Header Section
 st.markdown('<div class="main-title">🤖 Zoom Automation</div>', unsafe_allow_html=True)

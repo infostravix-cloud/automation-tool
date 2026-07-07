@@ -52,7 +52,7 @@ def get_driver(proxy):
     options.add_argument('--disable-software-rasterizer')
     
     # Streamlit ke Chromium ka binary path definition
-    options.binary_location = "/usr/bin/chromium" 
+    options.binary_location = "/usr/bin/chromium-browser" 
 
     options.add_argument(f'user-agent={user_agent}')
     options.add_experimental_option("detach", True)
@@ -68,7 +68,7 @@ def get_driver(proxy):
         
     driver = webdriver.Chrome(options=options)
     return driver
-    
+
 # Fixed: Local variables dynamically scope pass ho rahe hain instead of global execution
 def start(name, proxy, user, meeting_code, passcode, end_time):
     sync_print(f"{name} started!")
