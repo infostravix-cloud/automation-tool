@@ -40,13 +40,18 @@ def get_driver(proxy):
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
     options = webdriver.ChromeOptions()
     
-    # Streamlit Linux Server ke liye zaroori configurations
+    # Streamlit Linux Cloud Server Sandbox overrides
     options.add_argument("--headless=new") 
     options.add_argument('--disable-gpu')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     
-    # Streamlit ke Chromium ka path default set karne ke liye (Optional but safe)
+    # CRITICAL ADDITIONAL LINUX CLOUD OVERRIDES (Crash Fixes)
+    options.add_argument('--disable-setuid-sandbox')
+    options.add_argument('--single-process') # Container execution standard
+    options.add_argument('--disable-software-rasterizer')
+    
+    # Streamlit ke Chromium ka binary path definition
     options.binary_location = "/usr/bin/chromium" 
 
     options.add_argument(f'user-agent={user_agent}')
@@ -63,6 +68,7 @@ def get_driver(proxy):
         
     driver = webdriver.Chrome(options=options)
     return driver
+    
 # Fixed: Local variables dynamically scope pass ho rahe hain instead of global execution
 def start(name, proxy, user, meeting_code, passcode, end_time):
     sync_print(f"{name} started!")
